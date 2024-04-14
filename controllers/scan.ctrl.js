@@ -288,8 +288,8 @@ const xss_scan = async(req, res) => {
 
   const site_tree = fs.readFileSync('site_tree.txt').toString().split("\n");
   const form_site_tree = fs.readFileSync('form.txt').toString().split("\n");
-  const stored_accurate_xss_test_site_tree = fs.readFileSync('stored_accurate_xss_test_site.txt').toString().split("\n"); // 시연용. 시연용으로 안 해도 되긴 하는데, 이거 쓰면 한번에 빠르게 시연 가능.
-  const refled_accurate_xss_test_site_tree = fs.readFileSync('reflected_accurate_xss_test_site.txt').toString().split("\n"); // 시연용. 시연용으로 안 해도 되긴 하는데. 이거 쓰면 한번에 빠르게 시연 가능.
+  const stored_accurate_xss_test_site_tree = fs.readFileSync('site_tree.txt').toString().split("\n");
+  const refled_accurate_xss_test_site_tree = fs.readFileSync('site_tree.txt').toString().split("\n");
 
   if(type == "reflection"){
     if(option == "fast"){
@@ -594,7 +594,7 @@ const pathtraversal_scan = async(req, res) => {
   const url = req.body.href;
   await crawl(url);
 
-  const site_tree = fs.readFileSync('path_traversal_test_site.txt').toString().split("\n");
+  const site_tree = fs.readFileSync('site_tree.txt').toString().split("\n");
   const downloadPath = path.resolve(__dirname, 'downloads');
   const regexp = /=/g;
 
@@ -819,7 +819,7 @@ const sql_injection_scan = async (req, res) => {
 
   await crawl(href);
 
-  const formUrls = fs.readFileSync('sql_injection_test_site.txt').toString().split("\n"); // 시연용. 시연용으로 안 해도 되긴 하는데, 이거 쓰면 한번에 빠르게 시연 가능.
+  const formUrls = fs.readFileSync('site_tree.txt').toString().split("\n");
 
   for (const url of formUrls) {
     const forms = await findFormTagsForSqlInjectionScan(url, href, sql_injection_payload);
